@@ -11,7 +11,7 @@ services:
       POSTGRES_HOST_AUTH_METHOD: "trust"
     container_name: postgres-container
     volumes:
-      - ./volumes/postgresql:/var/lib/postgresql/data
+      - ./postgresql/data:/var/lib/postgresql/data
       - ./db/cloudbeaver-db.sql:/docker-entrypoint-initdb.d/cloudbeaver-db.sql
   gui:
     image: dbeaver/cloudbeaver
@@ -20,7 +20,7 @@ services:
     hostname: gui
     container_name: dbeaver-container
     volumes:
-      - ./volumes/dbeaver:/opt/cloudbeaver/workspace
+      - ./cloudbeaver/data:/opt/cloudbeaver/workspace
     tty: true
     depends_on:
       - db
