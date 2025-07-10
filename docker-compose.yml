@@ -11,6 +11,7 @@ services:
     container_name: postgres-container
     volumes:
       - /Users/Akuseru/Documents/Dev/volumes/postgresql:/var/lib/postgresql/data
+      - ./db/cloudbeaver-db.sql:/docker-entrypoint-initdb.d/cloudbeaver-db.sql
   gui:
     image: dbeaver/cloudbeaver
     ports: ["8000:8978"]
