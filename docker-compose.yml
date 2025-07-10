@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres
+    ports: ["5555:5432"]
+    hostname: db
+    environment:
+      POSTGRES_USER: lulu
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: "cloudbeaver-test"
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    container_name: postgres-container
+    volumes:
+      - /Users/Akuseru/Documents/Dev/volumes/postgresql:/var/lib/postgresql/data
+  gui:
+    image: dbeaver/cloudbeaver
+    ports: ["8000:8978"]
+    hostname: gui
+    container_name: dbeaver-container
+    volumes:
+      - /Users/Akuseru/Documents/Dev/volumes/dbeaver:/opt/cloudbeaver/workspace
+    tty: true
+    depends_on:
+      - db
+    links:
+      - db
